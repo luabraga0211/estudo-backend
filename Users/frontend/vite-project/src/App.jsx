@@ -135,6 +135,10 @@ const App = () => {
           </li>
         ))}
       </ul>
+
+      <ul>
+        <h1>Projeto feito por Luã e Vitor Soligo</h1>
+      </ul>
     </div>
   );
 };
