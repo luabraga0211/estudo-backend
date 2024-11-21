@@ -128,7 +128,6 @@ const App = () => {
       </form>
 
       <ul>
-=======
         {usuarios.map(usuario => ( // Mapeamento
           <li key={usuario.id}>
             {usuario.id} - {usuario.nome} - {usuario.senha} - {usuario.email}
