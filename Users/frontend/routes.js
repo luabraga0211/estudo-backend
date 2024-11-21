@@ -9,3 +9,5 @@ router.put('/usuarios/:id', registro.updateUsuarios);
 router.delete('/usuarios/:id', registro.deleteUsuarios); 
 
 module.exports = router;
+
+/// DEFINE TODAS AS ROTAS DO SITE

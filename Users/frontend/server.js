@@ -12,3 +12,4 @@ const app = express();
     app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
+// DEFININDO O SERVER

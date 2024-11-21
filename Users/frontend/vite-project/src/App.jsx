@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-
+// Criando a const para o App principal, setando a data e o usuario em lista
 const App = () => {
   const [usuarios, setUsuarios] = useState([]); // Lista de usuarios
   const [formData, setFormData] = useState({
@@ -17,7 +17,8 @@ const App = () => {
     fetchUsuarios();
   }, []);
 
-  const fetchUsuarios = async () => {
+  const fetchUsuarios = async () => { // Pega os dados dos usuarios
+  // Função para carregar os usuários da API
     try {
       const response = await axios.get('http://localhost:3000/usuarios');
       setUsuarios(response.data);
@@ -25,15 +26,15 @@ const App = () => {
       console.error(error);
     }
   };
-
+  // Função para lidar com a mudança nos inputs do formulário
   const handleInputChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  // Função para criar um novo usuário
   const handleCreateUsuarios = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/usuarios', formData);
+      await axios.post('http://localhost:3000/usuarios', formData); //posta os dados apos serem criados
       setFormData({
         id: '',
         nome: '',
@@ -45,11 +46,11 @@ const App = () => {
       console.error(error);
     }
   };
-
+  // Função para atualizar um usuário existente
   const handleUpdateUsuarios = async e => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/usuarios/${formData.id}`, formData);
+      await axios.put(`http://localhost:3000/usuarios/${formData.id}`, formData); //atualiza os dados do usuario
       setFormData({
         id: '',
         nome: '',
@@ -62,16 +63,16 @@ const App = () => {
       console.error(error);
     }
   };
-
+    // Função para deletar um usuário
   const handleDeleteUsuarios = async id => {
     try {
-      await axios.delete(`http://localhost:3000/usuarios/${id}`); // Corrigido para usar "id"
+      await axios.delete(`http://localhost:3000/usuarios/${id}`); // apaga o usuario utilizando o id de usuarios
       fetchUsuarios();
     } catch (error) {
       console.error(error);
     }
   };
-
+   // Função para editar um usuário
   const handleEditUsuarios = usuario => {
     setFormData({
       id: usuario.id,
@@ -93,7 +94,7 @@ const App = () => {
             name="id"
             value={formData.id}
             onChange={handleInputChange}
-            disabled={isEditing} // Desabilita a placa durante a edição
+            disabled={isEditing} // Desabilita o id durante a edição
           />
         </label>
         <label>
@@ -109,7 +110,7 @@ const App = () => {
           senha:
           <input
             type="text"
-            name="senha" // Corrigido para "senha"
+            name="senha" // Imputs
             value={formData.senha}
             onChange={handleInputChange}
           />
@@ -118,8 +119,8 @@ const App = () => {
           email:
           <input
             type="text"
-            name="email" // Corrigido para "email"
-            value={formData.email} // Corrigido para "formData.email"
+            name="email" 
+            value={formData.email} 
             onChange={handleInputChange}
           />
         </label>
@@ -127,7 +128,8 @@ const App = () => {
       </form>
 
       <ul>
-        {usuarios.map(usuario => ( // Corrigido para "usuarios"
+=======
+        {usuarios.map(usuario => ( // Mapeamento
           <li key={usuario.id}>
             {usuario.id} - {usuario.nome} - {usuario.senha} - {usuario.email}
             <button onClick={() => handleEditUsuarios(usuario)}>Editar</button>
